@@ -24,21 +24,15 @@ export function History() {
   const getCyclesStatus = (cycle: Cycle) => {
     const CycleTypes = {
       doing: () => <Status color="yellow">Em andamento</Status>,
-      interrupted: () => <Status color="red">Interrompido</Status>,
-      finished: () => <Status color="green">Concluído</Status>,
+      cancelled: () => <Status color="red">Interrompido</Status>,
+      done: () => <Status color="green">Concluído</Status>,
     }
 
     if (cycle.finishedDate && cycle.status === 'done') {
-      return CycleTypes.finished()
+      return CycleTypes.done()
     }
 
-    if (cycle.status === 'cancelled') {
-      return CycleTypes.interrupted()
-    }
-
-    if (!cycle.finishedDate && cycle.status === 'doing') {
-      return CycleTypes.doing()
-    }
+    return CycleTypes[cycle.status]() || CycleTypes.doing()
   }
 
   return (
