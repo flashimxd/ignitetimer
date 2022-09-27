@@ -33,7 +33,7 @@ export function Countdown() {
       // passed time in seconds
       const diffInSeconds = differenceInSeconds(
         new Date(),
-        activeCycle?.startedDate,
+        new Date(activeCycle?.startedDate),
       )
 
       // that means we did it ;D

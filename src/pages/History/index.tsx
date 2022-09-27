@@ -21,7 +21,7 @@ interface Cycle {
 export function History() {
   const { cycles } = useContext(CyclesContext)
 
-  const getCyclesStatus = (cycle: Cycle) => {
+  const renderCycleStatus = (cycle: Cycle) => {
     const CycleTypes = {
       doing: () => <Status color="yellow">Em andamento</Status>,
       cancelled: () => <Status color="red">Interrompido</Status>,
@@ -56,12 +56,12 @@ export function History() {
                   <td>{cycle.task}</td>
                   <td>{cycle.minutesAmount} minutos</td>
                   <td>
-                    {formatDistanceToNow(cycle.startedDate, {
+                    {formatDistanceToNow(new Date(cycle.startedDate), {
                       addSuffix: true,
                       locale: ptBr,
                     })}
                   </td>
-                  <td>{getCyclesStatus(cycle)}</td>
+                  <td>{renderCycleStatus(cycle)}</td>
                 </tr>
               )
             })}
